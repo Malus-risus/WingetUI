@@ -12,7 +12,7 @@ contents = json.load(open("screenshot-database-v2.json"))
 
 def getwingetPackages():
     packageList = []
-    p = subprocess.Popen(["mode", "400,30&", "winget", "search", ""], stdout=subprocess.PIPE, stderr=subprocess.STDOUT, stdin=subprocess.PIPE, cwd=os.getcwd(), env=os.environ.copy(), shell=True)
+    p = subprocess.Popen(["mode", "400,30&", "winget", "search", ""], stdout=subprocess.PIPE, stderr=subprocess.STDOUT, stdin=subprocess.PIPE, cwd=os.getcwd(), env=os.environ.copy(), shell=False)
     output = []
     counter = 0
     idSeparator = 0
@@ -72,7 +72,7 @@ def getScoopPackages():
     pkgs = []
     print("🟢 Starting scoop search...")
     ansi_escape = re.compile(r'\x1B\[[0-?]*[ -/]*[@-~]')
-    p = subprocess.Popen(' '.join(["powershell", "-NoProfile", "-Command", "scoop", "search"]), stdout=subprocess.PIPE, stderr=subprocess.STDOUT, stdin=subprocess.PIPE, cwd=os.getcwd(), env=os.environ, shell=True)
+    p = subprocess.Popen(' '.join(["powershell", "-NoProfile", "-Command", "scoop", "search"]), stdout=subprocess.PIPE, stderr=subprocess.STDOUT, stdin=subprocess.PIPE, cwd=os.getcwd(), env=os.environ, shell=False)
     output = []
     counter = 0
     while p.poll() is None:
